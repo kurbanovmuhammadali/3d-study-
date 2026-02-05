@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Play, Pause, Eye, Layers } from "lucide-react";
-import { SketchfabEmbed } from "./SketchfabEmbed";
+import { Engine3D } from "./3d/Engine3D";
 import { SystemPanel } from "./SystemPanel";
 import { ControlPanel } from "./ControlPanel";
 import { Slider } from "./ui/slider";
@@ -27,9 +27,6 @@ export function EngineMode({
   isRunning,
   onToggleEngine,
 }: EngineModeProps) {
-  const engineModelId = "be81c8572c8842a4b90e3f42e68e3e27";
-  const pistonModelId = "7ac7605efbe1450780ea38d5d906374a";
-
   return (
     <>
       {/* 3D Model View */}
@@ -40,9 +37,10 @@ export function EngineMode({
           exit={{ opacity: 0 }}
           className="absolute inset-0 z-10"
         >
-          <SketchfabEmbed
-            modelId={showPistonsOnly ? pistonModelId : engineModelId}
-            title={showPistonsOnly ? "Engine Pistons" : "4 Cylinder Engine"}
+          <Engine3D 
+            rpm={rpm} 
+            isRunning={isRunning} 
+            showPistonsOnly={showPistonsOnly} 
           />
         </motion.div>
       )}
